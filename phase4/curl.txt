@@ -1,0 +1,60 @@
+Anwender:
+
+Nutzer:
+
+*) get /nutzer: curl -L -X GET "localhost:8080/nutzer"
+*) post /nuzer: curl -L -X POST "localhost:8080/nutzer" -F "email=\"opeth@katatonia.com\"" -F "passwort=\"UqWeR5tz3\""
+
+Kunde:
+
+*) get /kunde: curl -L -X GET "localhost:8080/kunden"
+*) post /kunde: curl -L -X POST "localhost:8080/kunden" -F "email=\"kunde@curl.com\"" -F "passwort=\"UqWeR5tz3\"" -F "telefon=\"491563250641\""
+
+Projektleiter:
+
+*) get /projektleiter: curl -L -X GET "localhost:8080/projektleiter"
+*) post /projektleiter: curl -L -X POST "localhost:8080/projektleiter" -F "email=\"aslemay@bidha.tn\"" -F "passwort=\"KI250lk\"" -F "gehalt=\"450\""
+
+Spezialist:
+
+*) get /spezialisten: curl -L -X GET "localhost:8080/spezialisten"
+*) post /spezialisten: curl -L -X POST "localhost:8080/spezialisten" -F "email=\"email@template.com\"" -F "passwort=\"mU8t5R\"" -F "verfuegbarkeitsstatus=\"available\""
+
+Projekt:
+
+pathParam = 1
+
+*) get /projekte: curl -L -X GET "localhost:8080/projekte"
+*) get /projekte/{projektid}/bewertungen: curl -L -X GET "localhost:8080/projekte/1/bewertungen"
+*) get /projekte/{projektid}/aufgaben: curl -L -X GET "localhost:8080/projekte/1/aufgaben"
+*) get /projekte/{projektid}/spezialisten: curl -L -X GET "localhost:8080/projekte/1/spezialisten"
+
+Entwickler:
+
+*) get /entwickler: curl -L -X GET "localhost:8080/entwickler"
+*) post /entwickler: curl -L -X POST "localhost:8080/entwickler" -F "email=\"opeth@katatonia.de\"" -F "passwort=\"mU8t5R\"" -F "verfuegbarkeitsstatus=\"available\"" -F "kuerzel=\"opeth100\"" -F "benennung=\"React.js\""
+
+Programmierer:
+
+*) get /programmier: curl -L -X GET "localhost:8080/programmierer"
+
+------------------------------------------------------------------
+
+Authentifizierter und als Kunde authorisierter Anwender:
+
+*) post /projekte: curl -u "no@idea.com:MwY0X5r" -L -X POST "localhost:8080/projekte" -F "name=\"projekt from curl\"" -F "deadline=\"2023-16-01\""
+
+*) post /projekte/{projektid}/bewertungen: curl -u "no@idea.com:MwY0X5r" -L -X POST "localhost:8080/projekte/1/bewertungen" -H -F "projektid=\"1\"" -F "punktzahl=\"7\"" -F "text=\"from postman\""
+
+*) patch /bewertungen/{bewertungid}: curl -u "no@idea.com:MwY0X5r" -L -X PATCH "localhost:8080/bewertungen/1" -H  -F "punktzahl=\"6\"" -F "text=\"created from postman\""
+
+*) delete /bewertungen/{bewertungid}: curl -u "no@idea.com:MwY0X5r" -L -X DELETE "localhost:8080/bewertungen/1"
+
+
+------------------------------------------------------------------
+
+Authentifizierter und als Projektleiter authorisierter Anwender:
+
+*) post /projekte/{projektid}/aufgabe: curl -u "omar@chouikha.de:UqWeR5tz3" -L -X POST "localhost:8080/projekte/2/aufgaben" -F "deadline=\"2023-01-10\"" -F "beschreibung=\"aufgabe added from postman\"" -F "status=\"unassigned\"" -F "prioritaet=\"Hoch\""
+
+*) post /projekte/{projektid}/spezialisten: curl -u "omar@chouikha.de:UqWeR5tz3" -L -X POST "localhost:8080/projekte/1/spezialisten" -F "spezialistid=\"4\""
